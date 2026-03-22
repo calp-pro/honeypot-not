@@ -1,0 +1,34 @@
+{
+  "name": "@calp-pro/honeypot-is",
+  "version": "1.0.0",
+  "description": "Filter all protocols by honeypot.is check",
+  "keywords": [
+    "honeypot.is",
+    "DEX"
+  ],
+  "homepage": "https://github.com/calp-pro/honeypot-is#readme",
+  "bugs": {
+    "url": "https://github.com/calp-pro/honeypot-is/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/calp-pro/honeypot-is.git"
+  },
+  "license": "MIT",
+  "author": "Vladimir Spirin (spirin.vladimir@gmail.com)",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@calp-pro/dex-db": "^2.0.4",
+    "defiswap-dump": "^1.0.3",
+    "ethervista-dump": "^1.0.1",
+    "pancakeswap-dump": "^1.0.17",
+    "radioshack-dump": "^1.0.2",
+    "shibaswap-dump": "^1.0.3",
+    "sushiswap-dump": "^1.0.7",
+    "uniswap-v2-dump": "^3.0.60"
+  }
+}
