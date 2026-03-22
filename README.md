@@ -23,28 +23,12 @@ Positive results stored at DEX DB dump files:
 - `good_tokens.bin`
 - `good_p2tt.bin`
 
-File `honeypost.csv` store state of token address:
-```
-...
-0x2612f8eafd8a5ba5c7799a265b922d80b73232cd,true
-0xede6501ca4d2c579dfec249462b36cb1bbfebd28,true
-0x607f0e18d684ebf62d6461b60639a00b92c35ccf,true
-0xb6ea9d4c3a159221ba3aa969ca32c91fcd75a5f3,true
-...
-```
+File `honeypost.bin` store of honeypot (bad) tokenes addresses.<br>
+File `honeypost-not.bin` store NOT honeypot (good) tokenes addresses.<br>
 
 ## Install and run:
 git clone https://github.com/calp-pro/honeypot-not
 cd honeypot-not
 npm install
 npm start
-```
-
-Output:
-```
-DEX DB dump "good" found with pairs: 152923
-Found "honeypot.csv" file with tokens checked: 399915
-	honeypots: 280279 (bad)
-	normal: 119636
-21.72% | good 32143 | bad 77873 | cache_hit 70996 | requests 11808
 ```

@@ -18,25 +18,28 @@ if (fs.existsSync('good_pairs.bin')) {
 }
 
 const honeypot = new Map() 
-if (fs.existsSync('honeypot.csv')) {
-    const token_checked_count = {
-        good: 0,
-        bad: 0
+
+const token_checked_count = {
+    good: 0,
+    bad: 0
+}
+if (fs.existsSync('honeypot.bin')) {
+    var buf = fs.readFileSync('honeypot.bin')
+    for (var i = 0; i < buf.length; i += 20) {
+        const address = '0x' + buf.slice(i, i + 20).toString('hex')
+        honeypot.set(address, true)
+        token_checked_count.bad++
     }
-    const lines = fs.readFileSync('honeypot.csv').toString().trim().split('\n')
-    for (var i = 0; i < lines.length; i++) {
-        const [address, honeypot_is] = lines[i].split(',')
-        if (honeypot_is == 'true') {
-            honeypot.set(address, true)
-            token_checked_count.bad++
-        } else {
-            honeypot.set(address, false)
-            token_checked_count.good++                
-        }
+    console.log('Found "honeypot.bin" file with tokens checked:', token_checked_count.bad)
+}
+if (fs.existsSync('honeypot-not.bin')) {
+    var buf = fs.readFileSync('honeypot-not.bin')
+    for (var i = 0; i < buf.length; i += 20) {
+        const address = '0x' + buf.slice(i, i + 20).toString('hex')
+        honeypot.set(address, false)
+        token_checked_count.good++
     }
-    console.log('Found "honeypot.csv" file with tokens checked:', token_checked_count.bad + token_checked_count.good)
-    console.log('\thoneypots:', token_checked_count.bad, '(bad)')
-    console.log('\tnormal:', token_checked_count.good)
+    console.log('Found "honeypot-not.bin" file with tokens checked:', token_checked_count.good)
 }
 
 Promise.all(
@@ -60,23 +63,22 @@ Promise.all(
         return fetch('https://api.honeypot.is/v2/IsHoneypot?address=' + address)
             .then(_ => {
                 if (_.ok) return _.json().then(_ => {
-                    debugger
                     if (!_) {
                         throw 'Invalid JSON missed honeypotResult'
                     } else if (_.simulationSuccess == false) {
                         honeypot.set(address, true)
-                        fs.appendFileSync('honeypot.csv', address + ',true\n')
+                        fs.appendFileSync('honeypot.bin', Buffer.from(address.slice(2), 'hex'))
                         throw 'Honeypot!'
                     } else if (!_.honeypotResult) {
                         throw 'Invalid JSON missed honeypotResult'
                     } else if (_.honeypotResult.isHoneypot == true) {
                         honeypot.set(address, true)
-                        fs.appendFileSync('honeypot.csv', address + ',true\n')
+                        fs.appendFileSync('honeypot.bin', Buffer.from(address.slice(2), 'hex'))
                         throw 'Honeypot!'
                     } else if (_.honeypotResult.isHoneypot == false) {
                         honeypot.set(address, false)
-                        fs.appendFileSync('honeypot.csv', address + ',false\n')
-                                                                                                                                                    } else {
+                        fs.appendFileSync('honeypot-not.bin', Buffer.from(address.slice(2), 'hex'))
+                    } else {
                         throw 'Invalid JSON honeypotResult.isHoneypot'
                     }
                 })

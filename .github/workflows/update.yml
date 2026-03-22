@@ -1,0 +1,58 @@
+name: Update honeypot.bin & honeypot-not.bin
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+
+    permissions:
+      contents: write
+      id-token: write  # Required for OIDC
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: '24'
+        registry-url: 'https://registry.npmjs.org'
+
+    - name: Update npm
+      run: npm install -g npm@latest
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run update
+      run: npm start
+      timeout-minutes: 45
+
+    - name: Commit and push changes
+      id: commit
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git add good_pairs.bin good_tokens.bin good_p2tt.bin honeypot.bin honeypot-not.bin
+        if ! git diff --cached --quiet; then
+          npm version patch --force -m "chore: update *.bin to %s [skip ci]"
+          git push --follow-tags
+          echo "can_publish=true" >> $GITHUB_OUTPUT
+        elif [ "${{ github.event_name }}" != "schedule" ]; then
+          echo "can_publish=true" >> $GITHUB_OUTPUT
+        else
+          echo "No changes"
+        fi
+
