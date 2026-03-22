@@ -157,4 +157,5 @@ Promise.all(
             }),
         Promise.resolve()
     )
+    .then(() => db.save('good'))
 })

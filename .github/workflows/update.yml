@@ -39,6 +39,7 @@ jobs:
     - name: Run update
       run: npm start
       timeout-minutes: 45
+      continue-on-error: true
 
     - name: Commit and push changes
       id: commit
