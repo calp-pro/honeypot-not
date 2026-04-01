@@ -91,7 +91,10 @@ Promise.all(
         (p, pair, i) =>
             p
             .then(() => {
-                if (i % 1000 == 0) db.save('good')
+                if (i % 1000 == 0) {
+                    db.sort()
+                    db.save('good')
+                }
 
                 rl.clearLine(process.stdout, 0)
                 rl.cursorTo(process.stdout, 0)
@@ -157,5 +160,8 @@ Promise.all(
             }),
         Promise.resolve()
     )
-    .then(() => db.save('good'))
+    .then(() => {
+        db.sort()
+        db.save('good')
+    })
 })
