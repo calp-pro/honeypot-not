@@ -1,6 +1,6 @@
 {
   "name": "@calp-pro/honeypot-is",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "Filter all protocols by honeypot.is check",
   "keywords": [
     "honeypot.is",
@@ -22,13 +22,13 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@calp-pro/dex-db": "^2.1.0",
-    "defiswap-dump": "^1.0.3",
-    "ethervista-dump": "^1.0.1",
-    "pancakeswap-dump": "^1.0.17",
-    "radioshack-dump": "^1.0.2",
-    "shibaswap-dump": "^1.0.3",
-    "sushiswap-dump": "^1.0.7",
-    "uniswap-v2-dump": "^3.0.60"
+    "@calp-pro/dex-db": "2.1.*",
+    "defiswap-dump": "1.0.*",
+    "ethervista-dump": "1.0.*",
+    "pancakeswap-dump": "1.0.*",
+    "radioshack-dump": "1.0.*",
+    "shibaswap-dump": "1.0.*",
+    "sushiswap-dump": "1.0.*",
+    "uniswap-v2-dump": "3.0.*"
   }
 }
