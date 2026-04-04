@@ -23,7 +23,7 @@
     "test": "node --test test.js"
   },
   "dependencies": {
-    "@calp-pro/dex-db": "2.1.*",
+    "@calp-pro/dex-db": "3.0.*",
     "defiswap-dump": "1.0.*",
     "ethervista-dump": "1.0.*",
     "pancakeswap-dump": "1.0.*",

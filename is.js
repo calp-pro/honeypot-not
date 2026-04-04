@@ -119,12 +119,12 @@ Promise.all(
                             count.cache_hit += 0.5
                             if (is_honey_t0 == false) {
                                 count.good++
-                                db.index([pair.pair, pair.token0, pair.token1])
+                                db.index(pair.pair, pair.token0, pair.token1)
                             } else {
                                 return check_request(pair.token0)
                                 .then(() => {
                                     count.good++
-                                    db.index([pair.pair, pair.token0, pair.token1])
+                                    db.index(pair.pair, pair.token0, pair.token1)
                                 })
                                 .catch(() => {
                                     count.bad++
@@ -136,7 +136,7 @@ Promise.all(
                                 return check_request(pair.token1)
                                 .then(() => {
                                     count.good++
-                                    db.index([pair.pair, pair.token0, pair.token1])
+                                    db.index(pair.pair, pair.token0, pair.token1)
                                 })
                                 .catch(() => {
                                     count.bad++
@@ -148,7 +148,7 @@ Promise.all(
                                 ])
                                 .then(() => {
                                     count.good++
-                                    db.index([pair.pair, pair.token0, pair.token1])
+                                    db.index(pair.pair, pair.token0, pair.token1)
                                 })
                                 .catch(() => {
                                     count.bad++
