@@ -6,13 +6,13 @@
     "honeypot.is",
     "DEX"
   ],
-  "homepage": "https://github.com/calp-pro/honeypot-is#readme",
+  "homepage": "https://github.com/calp-pro/honeypot-not#readme",
   "bugs": {
-    "url": "https://github.com/calp-pro/honeypot-is/issues"
+    "url": "https://github.com/calp-pro/honeypot-not/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/calp-pro/honeypot-is.git"
+    "url": "git+https://github.com/calp-pro/honeypot-not.git"
   },
   "license": "MIT",
   "author": "Vladimir Spirin (spirin.vladimir@gmail.com)",
