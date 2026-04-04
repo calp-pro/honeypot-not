@@ -31,5 +31,9 @@
     "shibaswap-dump": "1.0.*",
     "sushiswap-dump": "1.0.*",
     "uniswap-v2-dump": "3.0.*"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
   }
 }

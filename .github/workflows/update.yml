@@ -57,3 +57,6 @@ jobs:
           echo "No changes"
         fi
 
+    - name: Publish to NPM
+      if: steps.commit.outputs.can_publish == 'true'
+      run: npm publish
