@@ -1,6 +1,6 @@
 {
   "name": "@calp-pro/honeypot-not",
-  "version": "1.1.210",
+  "version": "1.1.211",
   "description": "Filter all protocols by honeypot.is check",
   "keywords": [
     "honeypot.is",
